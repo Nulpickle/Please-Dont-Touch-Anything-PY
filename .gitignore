@@ -1,129 +1,215 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+#screen stuffs
+Rect(0,0,400,400,fill = 'dimgray')
+Rect(40,0,320,320,fill = 'grey')
+sky = Rect(80,20,240,130,fill = 'skyBlue')
+#MOON
+MOON = Circle(200,40,5,fill = 'Grey')
+MOON.dy = 0
+MCP = 0
+def onStep():
+    global MCP
+    MOON.radius += MOON.dy
+    MOON.centerY += MOON.dy
+    if(MOON.centerY >= 41):
+        sky.fill = gradient('darkOrange','orange')
+    if(MOON.centerY >= 60):
+        sky.fill = gradient('tomato','darkOrange')
+    if(MOON.centerY >= 75):
+        sky.fill = gradient('tomato','orangeRed')
+    if(MOON.centerY >= 100):
+        MOON.dy *= 0
+        MBKG.visible = True
+        
+        
+#Buildings
+Rect(80,150,240,15,fill = 'grey')
+Rect(120,70,20,80,fill = 'lightSlateGray')
+Rect(140,75,20,75,fill = 'slateGray')
+Rect(160,80,20,70,fill = 'slateGray')
+Rect(180,60,20,90,fill = 'lightSlateGray')
+Rect(200,70,20,80,fill = 'slateGray')
+Rect(220,40,20,110,fill = 'lightSlateGray')
+Rect(240,35,20,115,fill = 'lightSlateGray')
+Rect(260,80,20,70,fill = 'slateGray')
+Rect(0,170,400,400,fill = 'grey')
+Rect(0,170,400,150,fill = 'lightGrey')
+#inneractive objects
+BBP = Rect(170,175,60,50, fill = gradient('silver','Grey',start = 'top-left')) 
+DF = Label('3003',200,360,fill = 'Grey',size = 25 )
+AF = Label('I III II III',280,280,fill = 'lightGrey')
+BL = Rect(20,320,60,40,fill = gradient('mediumPurple','violet',start = 'top'),opacity = 0)
+BLT = Group(Rect(20,310,60,10),Circle(20,315,5),Circle(80,315,5))
+C = Oval(200,200,50,40,fill = gradient('darkRed','red',start = 'bottom'),visible = True)
+O = Rect(40,180,25,25,fill = gradient('lightGrey','Grey',start = 'top-left'))
+I = Rect(65,180,25,25,fill = gradient('lightGrey','Grey',start = 'top-left'))
+T = Rect(90,180,25,25,fill = gradient('lightGrey','Grey',start = 'top-left'))
+Z = Rect(15,180,25,25,fill = gradient('lightGrey','Grey',start = 'top-left'))
+CSLOK1 = 0
+CSL = Rect (180,245,20,20,fill='silver')
+CSR = Rect (200,245,20,20,fill='silver')
+DPLOK = 0
+DPADA = Circle(325,245,10,fill = 'red')
+LBL = Group(Label('ø',25,190,size = 20),Label('I',50,190),Label('II',75,190),Label('III',100,190))
+Bomb = Group(Rect(80,20,240,130,fill = 'darkSalmon'),Rect(160,60,40,90),Oval(180,60,100,45))
+Crash = Group(Rect(80,20,240,130,fill = 'dodgerBlue'),Label(':(',120,55,fill = 'white',size = 32),Label('it seems your computer ran into a problom',160,80,fill = 'white',size = 8),Label('where collecting error information do not turn your computer off',195,90,fill = 'white',size = 8))
+MBKG = Rect(80,20,240,130,fill = 'Red')
+MBKG.visible = False
+Crash.visible = False
+Bomb.visible = False
+LBL.visible = False
+BLSB = 0
+ISL = 0
+BLC = 0
+O.visible = False
+I.visible = False
+T.visible = False
+Z.visible = False
+BLT.visible = False
+DPADA.visible = False
+CSL.visible = False
+CSR.visible = False
+MOON.visible = False
+L = 0
+LL = 0
+LLL = 0
+Clicks = 0
+N = 0
+CLV = 0
+CRV = 0
+DPIA = 0
+DPUV = 0
+#Backlight
+def onMouseDrag(x, y):
+    BLT.centerX = x
+    BLT.centerY = y
+    BL.top = y
+    BL.centerX = x
+AF.toFront()
+DF.toFront()
+#the noodle code begins here
+def onMousePress(mouseX, mouseY):
+    global BLSB
+    global ISL
+    if (BLSB > 0):
+        if (BLT.contains(mouseX,mouseY) == True):
+            BL.opacity = 45
+        else:
+            BL.opacity = 0
+    #Varables
+    global CSLOK1 
+    global CLV
+    global CRV
+    global N
+    global L
+    global LL
+    global LLL
+    global Clicks
+    global DPLOK
+    global DPIA 
+    global DPUV 
+    
+    #Button 
+    if (C.contains(mouseX, mouseY) == True):
+        Clicks+=1
+        print(Clicks)
+        C.fill = 'DarkRed'
+    #Centeral Switch
+    if(CSLOK1 > 0):
+         if(CSL.contains(mouseX, mouseY) == True):
+            CLV+=1
+            CSL.fill = 'grey'
+            print('LEFT SELECTED')
+         if(CSR.contains(mouseX, mouseY) == True):
+            CRV+=1
+            CSR.fill = 'grey'
+            print('RIGHT SELECTED')
+    #I II III Buttons
+    if(ISL > 0):
+        if (Z.contains(mouseX, mouseY) == True):
+            Z.fill = 'grey'
+            N-=.5
+            print('Zero')
+        if (O.contains(mouseX, mouseY) == True):
+            O.fill = 'grey'
+            L+=6
+            print('One')
+        if (I.contains(mouseX, mouseY) == True):
+            I.fill = 'grey'
+            LL-=9
+            print('Two')
+        if (T.contains(mouseX, mouseY) == True):
+            T.fill = 'grey'
+            LLL+=.1
+            print('Three')
+    #DPAD
+    if(DPLOK > 0):
+        if (DPADA.contains(mouseX, mouseY) == True):
+             print('█LAUNCHING M.O.O.N█')
+             DPIA =+1
+    #events
+        #Black Light
+    if(Clicks == 5):
+        BLT.visible = True
+        BLSB =+1
+        # O I II III
+    if(Clicks == 10):
+        ISL =+ 1
+        LBL.visible = True
+        Z.visible = True
+        O.visible = True
+        I.visible = True
+        T.visible = True
+    #CRASH
+    if(N+L+LL+LLL== -0.8):
+        Crash.visible = True
+        O.visible = False
+        I.visible = False
+        T.visible = False
+        C.visible = False
+        Z.visible = False
+        LBL.visible = False
+        ISL -= 2
+    if(N+L+LL+LLL== -2.8):
+        O.visible = False
+        I.visible = False
+        T.visible = False
+        Z.visible = False
+        LBL.visible = False
+        ISL -= 2
+        CSLOK1 +=1
+        CSR.visible = True
+        CSL.visible = True
+    #Central Switch Stuff
+    if(CRV == 1):
+        CSLOK1 -=2
+        CSR.visible = False
+        CSL.visible = False
+        DPADA.visible = True
+        DPLOK +=1
+    if(CLV == 1):
+        CSLOK1 -=2
+        CSR.visible = False
+        CSL.visible = False
+#DPGARBAG
+    if(DPIA==1):
+        DPADA.visible = False
+        MOON.visible = True
+        MOON.dy = .1
+    
 
-# C extensions
-*.so
-
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-.python-version
-
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
+#Bomb
+    if(Clicks == 30):
+        O.visible = False
+        I.visible = False
+        T.visible = False
+        Bomb.visible = True
+        C.visible = False
+        Z.visible = False
+        LBL.visible = False
+def onMouseRelease(mouseX, mouseY):
+    C.fill = gradient('darkRed','red',start = 'bottom')
+    O.fill = gradient('lightGrey','Grey',start = 'top-left')
+    I.fill = gradient('lightGrey','Grey',start = 'top-left')
+    T.fill = gradient('lightGrey','Grey',start = 'top-left')
+    Z.fill = gradient('lightGrey','Grey',start = 'top-left')
+    
