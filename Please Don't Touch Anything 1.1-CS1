@@ -1,0 +1,560 @@
+#THIS IS A VERSION FOR MY CS1 CLASS 
+#THIS GAME IS BEING ACTIVELY UPDATED ON GITHUB HERE: https://github.com/Nulpickle/Please-Dont-Touch-Anything-PY
+#UPDATE 1.1
+print('*RULES READ ME VERY INPORTANT*')
+print('1.DO NOT JUST ENTER RANDOM BUTTON COMBONATIONS LOOK AROUND THE ROOM WITH THE TOOLS YOU GET')
+print('2 PLEASE READ THE STICKY NOTE WHEN YOU FIRST START UP THE GAME FOR CONTEXT ')
+#screen stuffs
+Rect(0,0,400,400,fill = 'dimgray')
+Rect(40,0,320,320,fill = 'grey')
+sky = Rect(80,20,240,130,fill = 'skyBlue')
+#OROBITAL DEATH RAY
+LDR = 0
+ODRL = 0
+ODR = Line(200,20,200,150,fill =gradient('cyan','turquoise','deepSkyBlue',start = 'bottom'),lineWidth = 1)
+ODR.visible = False
+LGR = 0
+            
+#MOON
+MOON = Circle(200,40,5,fill = 'Grey')
+MOON.dy = 0
+MCP = 0
+MON = 0
+def onStep():
+    global MCP
+    global MON
+    global Clicks
+    counter.value += 1
+    if(MON > 0):
+        MOON.radius += MOON.dy
+        MOON.centerY += MOON.dy
+        if(MOON.centerY >= 41):
+            sky.fill = gradient('darkOrange','orange')
+        if(MOON.centerY >= 60):
+            sky.fill = gradient('tomato','darkOrange')
+        if(MOON.centerY >= 75):
+            sky.fill = gradient('tomato','orangeRed')
+        if(MOON.centerY >= 100):
+            MOON.dy *= 0
+            MBKG.visible = True
+    if(counter.value == 300) and (Clicks == 0):
+        counter.value = -9223372036854775807
+        WAITDIAL.visible = True
+        WAITEND.visible = True
+        WAITDIAL2.visible = False
+        Clicks = -9223372036854775807
+    if(counter.value == 300) and (Clicks > 0):
+        counter.value = -9223372036854775807
+        WAITDIAL2.visible = True
+        WAITEND.visible = True
+        WAITDIAL.visible = False
+        Clicks = -9223372036854775807
+#Buildings
+Buildings = Group(
+    Rect(80,150,240,15,fill = 'grey'),
+    Rect(120,70,20,80,fill = 'lightSlateGray'),
+    Rect(140,75,20,75,fill = 'slateGray'),
+    Rect(160,80,20,70,fill = 'slateGray'),
+    Rect(180,60,20,90,fill = 'lightSlateGray'),
+    Rect(200,70,20,80,fill = 'slateGray'),
+    Rect(220,40,20,110,fill = 'lightSlateGray'),
+    Rect(240,35,20,115,fill = 'lightSlateGray'),
+    Rect(260,80,20,70,fill = 'slateGray'))
+#inneractive objects
+Buildings.visible = True
+Rect(0,170,400,400,fill = 'Grey')
+Rect(0,170,400,150,fill = 'lightGrey')
+BBP = Rect(170,175,60,50, fill = gradient('silver','Grey',start = 'top-left')) 
+DF = Label('1331',320,360,fill = 'Grey',size = 25 )
+AF = Label('I III II III',280,280,fill = 'lightGrey')
+FF =Label('3,7,4,8',280,200,fill = 'lightGrey',size = 10)
+FMB =Label('1212/2*7',200,270,fill = 'lightGrey',size = 15)
+LLB = Label('<',190,255)
+RLB = Label('>',210,255)
+BL = Rect(20,320,60,40,fill = gradient('mediumPurple','violet',start = 'top'),opacity = 0)
+BLT = Group(Rect(20,310,60,10),Circle(20,315,5),Circle(80,315,5))
+C = Oval(200,200,50,40,fill = gradient('darkRed','red',start = 'bottom'),visible = True)
+O = Rect(40,180,25,25,fill = gradient('lightGrey','Grey',start = 'top-left'))
+I = Rect(65,180,25,25,fill = gradient('lightGrey','Grey',start = 'top-left'))
+T = Rect(90,180,25,25,fill = gradient('lightGrey','Grey',start = 'top-left'))
+Z = Rect(15,180,25,25,fill = gradient('lightGrey','Grey',start = 'top-left'))
+CSLOK1 = 0
+CSL = Rect (180,245,20,20,fill = gradient('lightGrey','Grey',start = 'top-left'),border='black',borderWidth = .5)
+CSR = Rect (200,245,20,20,fill = gradient('lightGrey','Grey',start = 'top-right'),border='black',borderWidth = .5)
+DPLOK = 0
+MLST = Label('[M.O.O.N DO NOT PRESS]',345,230,fill = 'red',size = 7.5,border='black',borderWidth = .5)
+DPADA = Rect(320,200,40,20,fill =  gradient('darkRed','red',start = 'top-right'))
+LBL = Group(Label('ø',25,190,size = 20),Label('I',50,190),Label('II',75,190),Label('III',100,190))
+Bomb = Group(Rect(80,20,240,130,fill = 'darkSalmon'),Oval(200,145,100,20,fill=gradient('lightGrey','Grey','dimGrey',start = 'top-right')),Rect(180,60,40,90,fill=gradient('lightGrey','Grey','Dimgrey',start = 'top')),Oval(200,60,100,45,fill=gradient('lightGrey','Grey','dimGrey',start = 'top-right')),Rect(80,150,240,15,fill='grey'))
+Crash = Group(Rect(80,20,240,130,fill = 'dodgerBlue'),Label(':(',120,55,fill = 'white',size = 32),Label('it seems your computer ran into a problom',160,80,fill = 'white',size = 8),Label('where collecting error information do not turn your computer off',195,90,fill = 'white',size = 8))
+MBKG = Rect(80,20,240,130,fill = 'Red')
+MBKG.visible = False
+Crash.visible = False
+Bomb.visible = False
+LBL.visible = False
+LLB.visible = False
+RLB.visible = False
+ODRS = Rect(80,20,240,130,fill = 'white')
+KP1 = Group(Rect(40,220,20,20,fill = gradient('lightGrey','Grey',start = 'top-left')),Label('1',50,230))
+KP2 = Group(Rect(60,220,20,20,fill = gradient('lightGrey','Grey',start = 'top-left')),Label('2',70,230))
+KP3 = Group(Rect(80,220,20,20,fill = gradient('lightGrey','Grey',start = 'top-left')),Label('3',90,230))
+KP4 = Group(Rect(40,240,20,20,fill = gradient('lightGrey','Grey',start = 'top-left')),Label('4',50,250))
+KP5 = Group(Rect(60,240,20,20,fill = gradient('lightGrey','Grey',start = 'top-left')),Label('5',70,250))
+KP6 = Group(Rect(80,240,20,20,fill = gradient('lightGrey','Grey',start = 'top-left')),Label('6',90,250))
+KP7 = Group(Rect(40,260,20,20,fill = gradient('lightGrey','Grey',start = 'top-left')))
+KP8 = Group(Rect(60,260,20,20,fill = gradient('lightGrey','Grey',start = 'top-left')))
+KP9 = Group(Rect(80,260,20,20,fill = gradient('lightGrey','Grey',start = 'top-left')))
+KP0 = Group(Rect(60,280,20,20,fill = gradient('lightGrey','Grey',start = 'top-left')))
+Rect(170,330,60,50,fill = gradient('dimGrey','grey','grey','dimgrey',start = 'top'))
+RSS = Rect(180,340,40,15, fill = gradient('fireBrick','darkRed','fireBrick',start = 'top'))
+RSS2 = Rect(180,360,40,15,fill = gradient('darkRed','fireBrick','darkRed',start = 'top'))
+#PHOTOS
+CRASHEND = Group(Rect(20,30,40,40,fill = 'white', border = 'black',borderWidth = .25),Rect(25,35,30,27,fill = 'blue'),Label('404 NOT',40,40,size = 7,fill = 'white'),Label('FOUND',40,55,size = 7,fill = 'white'))
+CRASHEND.visible = False
+ATOMEND = Group(Rect(20,75,40,40,fill = 'white', border = 'black',borderWidth = .25),Rect(25,80,30,27,fill = 'lawnGreen'),Line(40,107,40,90,lineWidth = 10,fill = 'tan'),Oval(40,90,20,10,fill = 'red'),Oval(43,92,5,2,fill = 'white'),Oval(36,89,5,2,fill = 'white'))
+ATOMEND.visible = False
+MOONEND = Group(Rect(20,120,40,40,fill = 'white', border = 'black',borderWidth = .25),Rect(25,125,30,27,fill = 'Black',),RegularPolygon(33, 147, 8, 3,fill = 'gold'),RegularPolygon(47, 147, 8, 3,fill = 'gold'),RegularPolygon(40, 134, 8, 3,fill = 'gold'))
+MOONEND.visible = False
+LASEREND = Group(Rect(340,30,40,40,fill = 'white' , border = 'black',borderWidth = .25),Rect(345,35,30,27,fill = 'black'),Line(345,52,360,50,fill = 'white',lineWidth = 1.5),Line(360,52,375,50,lineWidth = 7,fill = gradient('red','orange','yellow','lime','blue','indigo','violet',start = 'top'),opacity = 85),RegularPolygon(360,52,10,3,fill = gradient('paleTurquoise','powderBlue',start = 'left'),opacity = 85))
+LASEREND.visible = False
+NICEEND = Group(Rect(340,75,40,40,fill = 'white' , border = 'black',borderWidth = .25),Rect(345,80,30,27,fill = 'orange'),Polygon(351,100,368,100,370,85,350,85,fill = gradient('grey','silver',start ='top-right')),Label('BUCKET',360,103,size =7,bold = True,fill = 'black'))
+NICEEND.visible = False
+WAITEND = Group(Rect(340,120,40,40,fill = 'white' , border = 'black',borderWidth = .25),Rect(345,125,30,27,fill = 'black'),Label('HARDEST',360,130,fill = gradient('gold','Khaki'),size = 6),Label('WORKER',360,140,fill = gradient('gold','Khaki'),size = 6))
+WAITEND.visible = False
+FLOOR = Rect(80,140,240,10,fill = 'darkgrey')
+NITX = Label('nice',200,80,fill = 'green')
+BLSB = 0
+ISL = 0
+BLC = 0
+APLOK = 0
+MLST.visible = False
+O.visible = False
+I.visible = False
+T.visible = False
+Z.visible = False
+BLT.visible = False
+DPADA.visible = False
+CSL.visible = False
+CSR.visible = False
+MOON.visible = False
+RSS2.visible = False
+SXB = Rect(175,140,50,10,fill = 'White')
+SRSL = 0
+L = 0
+LL = 0
+LLL = 0
+Clicks = 0
+N = 0
+CLV = 0
+CRV = 0
+DPIA = 0
+DPUV = 0
+CBLOK = 0
+#keypad VAR
+KPD1 = 0
+KPN0 =  Label('0',70,290)
+KPN9 =  Label('9',90,270)
+KPN8 =  Label('8',70,270)
+KPN7 =  Label('7',50,270)
+KPN6 =  Label('6',90,250)
+KPN5 =  Label('5',70,250)
+KPN4 =  Label('4',50,250)
+KPN3 =  Label('3',90,230)
+KPN2 =  Label('2',70,230)
+KPN1 =  Label('1',50,230)
+ODRS.visible = False
+KP0.visible = False
+KP1.visible = False
+KP2.visible = False
+KP3.visible = False
+KP4.visible = False
+KP5.visible = False
+KP6.visible = False
+KP7.visible = False
+KP8.visible = False
+KP9.visible = False
+KPN0.visible = False
+KPN9.visible = False
+KPN8.visible = False
+KPN7.visible = False
+KPN6.visible = False
+KPN5.visible = False
+KPN4.visible = False
+KPN3.visible = False
+KPN2.visible = False
+KPN1.visible = False
+NITX.visible = False
+SXB.visible = False
+#DIALOG
+MINISTICKY = Group(Rect(320,175,40,25,fill ='lightGoldenrodYellow'),Label('READ ME',340,185,size = 9,font = 'caveat',bold = True))
+STICKYNOTE = Group(Rect(40,40,320,320,fill = 'lightGoldenrodYellow'),Label('Out to get coffee',200,120,font = 'caveat',bold = True,size = 20),Label('I know you wanted Black coffee with creamer',200,160,font = 'caveat',bold = True,size = 20),Label('please dont touch anything on the panel',200,200,font = 'caveat',bold = True,size = 20),Label('-XOXO your boss aka BOB',200,240,font = 'caveat',bold = True,size = 20))
+WAITDIAL = Group(Label('hey im back',60,360),
+        Label('thanks for waiting for me',70,370),
+        Label('they ran out of black coffee but',40,380),
+        Label('i found this here take it you earned it',100,390))
+WAITDIAL2 = Group(Label('hey im back',35,340),
+        Label('They ran out of black cof-',65,350),
+        Label('you pressed the button?',65,360),
+        Label('Did you really think your going to get a special ending',145,370),
+        Label('for pressing the button and then waiting for me to get back',195,380),
+        Label('take it you obviously earned it stanley and your stupid bucket',195,390))
+WAITDIAL2.visible = False
+STICKYNOTE.visible = False
+WAITDIAL.visible = False
+#Backlight
+def onMouseDrag(x, y):
+    BLT.centerX = x
+    BLT.centerY = y
+    BL.top = y
+    BL.centerX = x
+AF.toFront()
+DF.toFront()
+FMB.toFront()
+FF.toFront()
+#the noodle code begins here
+def onMousePress(mouseX, mouseY):
+    global BLSB
+    global ISL
+    if (BLSB > 0):
+        if (BLT.contains(mouseX,mouseY) == True):
+            BL.opacity = 45
+        else:
+            BL.opacity = 0
+    #Varables
+    global LDR
+    global ODRL
+    global KPD1
+    global APLOK
+    global MON
+    global CBLOK
+    global CSLOK1 
+    global CLV
+    global CRV
+    global N
+    global L
+    global LL
+    global LLL
+    global Clicks
+    global DPLOK
+    global DPIA 
+    global DPUV 
+    global CCONTIN
+    global SRSL
+    global KPD1
+    global ODRL
+    #DIALOG
+    if (MINISTICKY.contains(mouseX, mouseY) == True):
+        STICKYNOTE.visible = True
+        STICKYNOTE.toFront()
+        SRSL = 0
+        CBLOK = 0
+    else:
+        SRSL = 1
+        CBLOK = 1
+    #Button 
+    if(CBLOK > 0):
+        if (C.contains(mouseX, mouseY) == True):
+            Clicks+=1
+            C.fill = 'DarkRed'
+    #Centeral Select Buttons
+    if(CSLOK1 > 0):
+         if(CSL.contains(mouseX, mouseY) == True):
+            CLV+=1
+            CSL.fill = 'grey'
+            print('LEFT SELECTED')
+         if(CSR.contains(mouseX, mouseY) == True):
+            CRV+=1
+            CSR.fill = 'grey'
+            print('RIGHT SELECTED')
+    #I II III Buttons
+    if(ISL > 0):
+        if (Z.contains(mouseX, mouseY) == True):
+            Z.fill = 'grey'
+            N-=.5
+            print('Zero')
+        if (O.contains(mouseX, mouseY) == True):
+            O.fill = 'grey'
+            L+=6
+            print('One')
+        if (I.contains(mouseX, mouseY) == True):
+            I.fill = 'grey'
+            LL-=9
+            print('Two')
+        if (T.contains(mouseX, mouseY) == True):
+            T.fill = 'grey'
+            LLL+=.1
+            print('Three')
+    #DPAD
+    if(DPLOK > 0):
+        if (DPADA.contains(mouseX, mouseY) == True):
+             print('█LAUNCHING M.O.O.N█')
+             DPIA =+1
+    #events
+        #Black Light
+    if(Clicks == 5):
+        BLT.visible = True
+        BLSB =+1
+        # O I II III
+    if(Clicks == 10):
+        ISL =+ 1
+        LBL.visible = True
+        Z.visible = True
+        O.visible = True
+        I.visible = True
+        T.visible = True
+    #CRASH
+    if(N+L+LL+LLL== 12.2):
+        Crash.visible = True
+        O.visible = False
+        I.visible = False
+        T.visible = False
+        Z.visible = False
+        CBLOK -= 1
+        LBL.visible = False
+        ISL -= 2
+        CRASHEND.visible = True
+        counter.value = -9223372036854775807
+    if(N+L+LL+LLL== -2.8):
+        O.visible = False
+        I.visible = False
+        T.visible = False
+        Z.visible = False
+        LBL.visible = False
+        ISL -= 2
+        CSLOK1 +=1
+        CSR.visible = True
+        CSL.visible = True
+        LLB.visible = True
+        LLB.toFront()
+        RLB.toFront()
+        RLB.visible = True
+    #Central Switch Stuff
+    if(CRV == 1):
+        CSLOK1 -=2
+        LLB.visible = False
+        RLB.visible = False
+        CSR.visible = False
+        CSL.visible = False
+        DPADA.visible = True
+        MLST.visible = True
+        DPLOK +=1
+    if(CLV == 1):
+        CSLOK1 -=2
+        LLB.visible = False
+        RLB.visible = False
+        CSR.visible = False
+        CSL.visible = False
+        APLOK +=1
+#DPGARBAG
+    if(DPIA==1):
+        MON +=1
+        CBLOK -= 1
+        DPLOK -= 2
+        DPADA.fill = 'darkRed'
+        MOON.visible = True
+        MOON.dy = .1
+        MOONEND.visible = True
+        counter.value = -9223372036854775807
+    
+
+#Bomb
+    if(Clicks == 30):
+        CBLOK -= 1
+        O.visible = False
+        I.visible = False
+        T.visible = False
+        Bomb.visible = True
+        Z.visible = False
+        LBL.visible = False
+        ATOMEND.visible = True
+        counter.value = -9223372036854775807
+#keypad/Reset Switch
+    if(SRSL > 0):
+        if (RSS.contains(mouseX, mouseY) == True): 
+            Buildings.visible = True
+            ODR.lineWidth = 1
+            C.visible = True
+            RSS.visible = False
+            RSS2.visible = True
+            KP0.visible = False
+            KP1.visible = False
+            KP2.visible = False
+            KP3.visible = False
+            KP4.visible = False
+            KP5.visible = False
+            KP6.visible = False
+            KP7.visible = False
+            KP8.visible = False
+            KP9.visible = False
+            KPN0.visible = False
+            KPN9.visible = False
+            KPN8.visible = False
+            KPN7.visible = False
+            KPN6.visible = False
+            KPN5.visible = False
+            KPN4.visible = False
+            KPN3.visible = False
+            KPN2.visible = False
+            KPN1.visible = False
+            KPD1 = 0
+            LGR = 0
+            LDR = 0
+            APLOK = 0
+            ODRL = 0
+            L = 0
+            LL = 0
+            LLL = 0
+            Clicks = 0
+            N = 0
+            CLV = 0
+            CRV = 0
+            DPIA = 0
+            DPUV = 0
+            CBLOK = 1
+            MOON.dy = 0
+            BLSB = 0
+            ISL = 0
+            BLC = 0
+            MCP = 0
+            DPLOK = 0
+            CSLOK1 = 0
+            MLST.visible = False
+            O.visible = False
+            I.visible = False
+            T.visible = False
+            Z.visible = False
+            BLT.visible = False
+            DPADA.visible = False
+            CSL.visible = False
+            CSR.visible = False
+            MOON.visible = False
+            MBKG.visible = False
+            Crash.visible = False
+            Bomb.visible = False
+            LBL.visible = False
+            LLB.visible = False
+            RLB.visible = False
+            sky.fill = 'skyblue'
+            MON = 0
+            CSL.fill = 'silver'
+            CSR.fill = 'silver'
+            DPADA.fill = 'red'
+            counter.value = 0
+            NITX.visible = False
+            WAITDIAL.visible = False
+            WAITDIAL2.visible = False
+            SXB.visible = False
+    if(APLOK>0):
+        KP0.visible = True
+        KP1.visible = True
+        KP2.visible = True
+        KP3.visible = True
+        KP4.visible = True
+        KP5.visible = True
+        KP6.visible = True
+        KP7.visible = True
+        KP8.visible = True
+        KP9.visible = True
+        KPN0.visible = True
+        KPN9.visible = True
+        KPN8.visible = True
+        KPN7.visible = True
+        KPN6.visible = True
+        KPN5.visible = True
+        KPN4.visible = True
+        KPN3.visible = True
+        KPN2.visible = True
+        KPN1.visible = True
+        if (KP1.contains(mouseX, mouseY) == True):
+            KP1.fill = 'grey'
+            KPD1 +=1
+            print('ONE')
+            
+        if (KP2.contains(mouseX, mouseY) == True):
+            KP2.fill = 'grey'
+            KPD1 +=2
+            print('TWO')
+            
+        if (KP3.contains(mouseX, mouseY) == True):
+            KP3.fill = 'grey'
+            KPD1 +=3
+            print('THREE')
+            
+        if (KP4.contains(mouseX, mouseY) == True):
+            KP4.fill = 'grey'
+            KPD1 +=4
+            print('FOUR')
+            
+        if (KP5.contains(mouseX, mouseY) == True):
+            KP5.fill = 'grey'
+            KPD1 +=5
+            print('FIVE')
+            
+        if (KP6.contains(mouseX, mouseY) == True):
+            KP6.fill = 'grey'
+            KPD1 +=6
+            print('SIX')
+            
+        if (KP7.contains(mouseX, mouseY) == True):
+            KP7.fill = 'grey'
+            KPD1 +=7
+            print('SEVEN')
+            
+        if (KP8.contains(mouseX, mouseY) == True):
+            KP8.fill = 'grey'
+            KPD1 +=8
+            print('EIGHT')
+            
+        if (KP9.contains(mouseX, mouseY) == True):
+            KP9.fill = 'grey'
+            KPD1 +=9
+            print('NINE')
+            
+        if (KP0.contains(mouseX, mouseY) == True):
+            KP0.fill = 'grey'
+            KPD1 -=1
+            print('ZERO')
+    if(KPD1 == 22):
+        APLOK = -10
+        ODRS.visible = False
+        ODR.visible = True
+        ODR.lineWidth = 25
+        FLOOR.visible = False
+        Buildings.visible = False
+        sky.fill = gradient('Red','orangeRed','darkOrange','orange','gold','Yellow','lightCyan','white',start = 'top')
+        SXB.visible = True
+        LASEREND.visible = True
+        counter.value = -9223372036854775807
+    if(KPD1 == 12):
+        APLOK = -10
+        Buildings.visible = False 
+        sky.fill = 'black'
+        NITX.visible = True
+        counter.value = -9223372036854775807
+        FLOOR.visible = False
+#RESET SWITCH
+def onMouseRelease(mouseX, mouseY):
+    if (STICKYNOTE.contains(mouseX, mouseY) == True):
+        STICKYNOTE.visible = False
+    if (RSS.contains(mouseX, mouseY) == True):
+        RSS.visible = True
+        RSS2.visible = False
+    KP1.fill = gradient('lightGrey','Grey',start = 'top-left')
+    KP2.fill = gradient('lightGrey','Grey',start = 'top-left')
+    KP3.fill = gradient('lightGrey','Grey',start = 'top-left')
+    KP4.fill = gradient('lightGrey','Grey',start = 'top-left')
+    KP5.fill = gradient('lightGrey','Grey',start = 'top-left')
+    KP6.fill = gradient('lightGrey','Grey',start = 'top-left')
+    KP7.fill = gradient('lightGrey','Grey',start = 'top-left')
+    KP8.fill = gradient('lightGrey','Grey',start = 'top-left')
+    KP9.fill = gradient('lightGrey','Grey',start = 'top-left')
+    KP0.fill = gradient('lightGrey','Grey',start = 'top-left')
+    C.fill = gradient('darkRed','red',start = 'bottom')
+    O.fill = gradient('lightGrey','Grey',start = 'top-left')
+    I.fill = gradient('lightGrey','Grey',start = 'top-left')
+    T.fill = gradient('lightGrey','Grey',start = 'top-left')
+    Z.fill = gradient('lightGrey','Grey',start = 'top-left')
+        #DIALONG
+app.stepsPerSecond = 1
+counter = Label(0, 200, 200, size=25)
+counter.visible = False
