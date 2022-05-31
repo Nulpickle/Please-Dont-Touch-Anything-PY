@@ -1,6 +1,9 @@
 
 
 # Please-Dont-Touch-Anything-PY
+MINOR UPDATE 1.2
+added more endings | Waiting |
+and much more
 
 MAJOR UPDATE 1.1
 added more endings |
