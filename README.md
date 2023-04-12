@@ -1,9 +1,7 @@
 
 
 # Please-Dont-Touch-Anything-PY'
-Yeah im not updating this much more 
-play it online 
-https://replit.com/@Nultistic/PLEASE-DONT-TOUCH-ANYTHING-PY#main.py
+Yeah im not updating this 
 im not fixing aspect ratio stuff i dont really care / have time to
 MINOR UPDATE 1.2
 added more endings | Waiting |
